@@ -34,7 +34,7 @@ const removeToDo = () => {
       toDos = toDos.filter((toDo) => toDo.index !== +e.target.id);
       localStorage.setItem('toDos', JSON.stringify(toDos));
     });
-  })
+  });
 };
 
 const editTask = () => {
@@ -55,14 +55,14 @@ const editTask = () => {
       edit.placeholder = edit.value;
       toDos.forEach((toDo, index) => {
         if (indexy === index) {
-          //toDos[index].description = edit.value;
+          // toDos[index].description = edit.value;
           toDo.description = edit.value;
           localStorage.setItem('toDos', JSON.stringify(toDos));
         }
       });
-    })
-  })
-}
+    });
+  });
+};
 
 addToDo();
 displayToDo(toDos);
