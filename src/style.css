@@ -121,3 +121,15 @@ i {
 .checker {
   margin-right: 15px;
 }
+
+.fa-trash-can {
+  display: none;
+}
+
+.drag {
+  cursor: all-scroll;
+}
+
+.trash {
+  cursor: pointer;
+}
