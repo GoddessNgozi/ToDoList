@@ -14,7 +14,7 @@
 
 ## Project Preview
 
-[Live Demo](https://goddessngozi.github.io/ToDoList/)
+[Live Demo](https://goddessngozi.github.io/ToDoList/dist)
 
 
 ## Authors
