@@ -1,35 +1,30 @@
-import _ from 'lodash';
 import './style.css';
 
 const list = document.querySelector('.list');
-const taskForm = document.querySelector('.taskForm');
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+const tasks = [
+  {
+    description: 'Learn coding',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Do yoga',
+    completed: false,
+    index: 2,
+  },
+  {
+    description: 'Have dinner with family',
+    completed: false,
+    index: 3,
+  },
+];
 
-    function addList() {
-        taskForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const desc = document.querySelector('.description');
-            const description = desc.value;
-            const completed = 'false';
-            const index = tasks.length;
-            const task = {
-                description,
-                completed,
-                index,
-            };
-            tasks.push(task);
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            console.log(tasks);
-            taskForm.reset();
-            tasks.forEach((task) => {
-                list.innerHTML += `<li><input type="checkbox" class="checker"><input type="text" class="list-input" value="${task.description}" disabled><i class="fa fa-ellipsis-vertical"></i></li>`;
-            });
-    });
-}
-addList();
-
-document.addEventListener('DOMContentLoaded', () => {
-    tasks.forEach((task) => {
-        list.innerHTML += `<li><input type="checkbox" class="checker"><input type="text" class="list-input" value="${task.description}" disabled><i class="fa fa-ellipsis-vertical"></i></li>`;
-    });
+function addList(tasks) {
+  let markup = ''
+  tasks.forEach((task) => {
+    markup += `<li><input type="checkbox" class="checker"><input type="text" class="list-input" value="${task.description}" disabled><i class="fa fa-ellipsis-vertical"></i></li>`;
 });
+list.innerHTML = markup;
+}
+
+addList(tasks);
