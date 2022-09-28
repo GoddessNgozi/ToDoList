@@ -20,11 +20,11 @@ const tasks = [
 ];
 
 function addList(tasks) {
-  let markup = ''
+  let markup = '';
   tasks.forEach((task) => {
     markup += `<li><input type="checkbox" class="checker"><input type="text" class="list-input" value="${task.description}" disabled><i class="fa fa-ellipsis-vertical"></i></li>`;
-});
-list.innerHTML = markup;
+  });
+  list.innerHTML = markup;
 }
 
 addList(tasks);
