@@ -10,7 +10,7 @@ const addToDo = () => {
     const toDo = {
       description: desc.value,
       completed: false,
-      index: toDos.length + 1,
+      index: toDos.length,
     };
     toDos.push(toDo);
     localStorage.setItem('toDos', JSON.stringify(toDos));
@@ -26,36 +26,24 @@ const displayToDo = (toDos) => {
   list.innerHTML = markup;
 };
 
-const removeToDo = () => {
-  const trashes = document.querySelectorAll('.trash');
-  trashes.forEach((trash) => {
-    trash.addEventListener('mousedown', (e) => {
-      e.target.parentElement.remove();
-      toDos = toDos.filter((toDo) => toDo.index !== +e.target.id);
-      localStorage.setItem('toDos', JSON.stringify(toDos));
-    });
-  });
-};
-
-const editTask = () => {
+const editToDo = () => {
   const edits = document.querySelectorAll('.list-input');
   edits.forEach((edit, indexy) => {
-    edit.addEventListener('focusin', (e) => {
-      e.target.parentElement.style.background = '#faf8b1';
-      e.target.parentElement.lastChild.style.display = 'block';
-      e.target.nextSibling.style.display = 'none';
+    edit.addEventListener('focusin', () => {
+      edit.parentElement.style.background = '#faf8b1';
+      edit.parentElement.lastChild.style.display = 'block';
+      edit.nextSibling.style.display = 'none';
     });
-    edit.addEventListener('focusout', (e) => {
-      e.target.parentElement.style.background = '#ffffff';
-      e.target.parentElement.lastChild.style.display = 'none';
-      e.target.nextSibling.style.display = 'block';
+    edit.addEventListener('focusout', () => {
+      edit.parentElement.style.background = '#ffffff';
+      edit.parentElement.lastChild.style.display = 'none';
+      edit.nextSibling.style.display = 'block';
     });
-    edit.addEventListener('change', (e) => {
-      e.target.parentElement.style.background = '#ffffff';
+    edit.addEventListener('change', () => {
+      edit.parentElement.style.background = '#ffffff';
       edit.placeholder = edit.value;
       toDos.forEach((toDo, index) => {
         if (indexy === index) {
-          // toDos[index].description = edit.value;
           toDo.description = edit.value;
           localStorage.setItem('toDos', JSON.stringify(toDos));
         }
@@ -64,7 +52,24 @@ const editTask = () => {
   });
 };
 
+const removeToDo = () => {
+  const trashes = document.querySelectorAll('.trash');
+  trashes.forEach((trash) => {
+    trash.addEventListener('mousedown', () => {
+      trash.parentElement.remove();
+      toDos = toDos.filter((toDo) => toDo.index !== +trash.id);
+      toDos.forEach((toDo, index) => {
+        toDo.index = index;
+      });
+      localStorage.setItem('toDos', JSON.stringify(toDos));
+      displayToDo(toDos);
+      editToDo();
+      removeToDo();
+    });
+  });
+};
+
 addToDo();
 displayToDo(toDos);
 removeToDo();
-editTask();
+editToDo();
