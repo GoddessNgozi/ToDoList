@@ -1,11 +1,40 @@
 import './style.css';
-import { statusUpdate, checkStatus } from './status.js';
+import { checkStatus } from './status.js';
 
 const list = document.querySelector('.list');
 const desc = document.querySelector('.description');
 const form = document.querySelector('.toDoForm');
 
 let toDos = JSON.parse(localStorage.getItem('toDos')) || [];
+
+const statusUpdate = () => {
+  const checkers = document.querySelectorAll('.checker');
+  checkers.forEach((check, indexy) => {
+    check.addEventListener('change', () => {
+      if (check.checked === true) {
+        check.nextSibling.classList.add('strike');
+        check.id = 'true';
+        // check.checked = true;
+        toDos.forEach((toDo, index) => {
+          if (indexy === index) {
+            toDo.completed = true;
+            localStorage.setItem('toDos', JSON.stringify(toDos));
+          }
+        });
+      } else {
+        check.nextSibling.classList.remove('strike');
+        check.id = 'false';
+        // check.checked = false;
+        toDos.forEach((toDo, index) => {
+          if (indexy === index) {
+            toDo.completed = false;
+            localStorage.setItem('toDos', JSON.stringify(toDos));
+          }
+        });
+      }
+    });
+  });
+};
 
 const displayToDo = () => {
   let markup = '';
@@ -52,7 +81,7 @@ const removeToDo = () => {
         toDo.index = index;
       });
       localStorage.setItem('toDos', JSON.stringify(toDos));
-      displayToDo(toDos);
+      displayToDo();
       editToDo();
       removeToDo();
     });
@@ -69,7 +98,7 @@ const addToDo = () => {
     };
     toDos.push(toDo);
     localStorage.setItem('toDos', JSON.stringify(toDos));
-    displayToDo(toDos);
+    displayToDo();
     editToDo();
     removeToDo();
     form.reset();
@@ -82,14 +111,26 @@ const clear = () => {
   clear.addEventListener('click', () => {
     toDos = toDos.filter((toDo) => toDo.completed !== true);
     localStorage.setItem('toDos', JSON.stringify(toDos));
-    displayToDo(toDos);
+    const checkers = document.querySelectorAll('.checker');
+    checkers.forEach((check) => {
+      if (check.id === 'true') {
+        check.parentElement.remove();
+        toDos.forEach((toDo, index) => {
+          toDo.index = index;
+        });
+        localStorage.setItem('toDos', JSON.stringify(toDos));
+        displayToDo();
+        editToDo();
+        removeToDo();
+      }
+    });
   });
 };
 
 document.addEventListener('DOMContentLoaded', checkStatus);
 
 addToDo();
-displayToDo(toDos);
+displayToDo();
 editToDo();
 removeToDo();
 statusUpdate();
