@@ -1,29 +1,20 @@
 import './style.css';
+import { statusUpdate, checkStatus } from './status.js';
 
 const list = document.querySelector('.list');
 const desc = document.querySelector('.description');
 const form = document.querySelector('.toDoForm');
+
 let toDos = JSON.parse(localStorage.getItem('toDos')) || [];
 
-const addToDo = () => {
-  form.addEventListener('submit', () => {
-    const toDo = {
-      description: desc.value,
-      completed: false,
-      index: toDos.length,
-    };
-    toDos.push(toDo);
-    localStorage.setItem('toDos', JSON.stringify(toDos));
-  });
-  return toDos;
-};
-
-const displayToDo = (toDos) => {
+const displayToDo = () => {
   let markup = '';
   toDos.forEach((toDo) => {
-    markup += `<li class="doList"><input type="checkbox" class="checker"><input type="text" class="list-input" value="${toDo.description}"><i class="drag fa fa-ellipsis-vertical"></i><i id="${toDo.index}" class="trash fa-solid fa-trash-can"></i></li>`;
+    markup += `<li class="doList"><input type="checkbox" id="${toDo.completed}" class="checker"><input type="text" class="list-input" value="${toDo.description}"><i class="drag fa fa-ellipsis-vertical"></i><i id="${toDo.index}" class="trash fa-solid fa-trash-can"></i></li>`;
   });
   list.innerHTML = markup;
+  statusUpdate();
+  checkStatus();
 };
 
 const editToDo = () => {
@@ -41,7 +32,6 @@ const editToDo = () => {
     });
     edit.addEventListener('change', () => {
       edit.parentElement.style.background = '#ffffff';
-      edit.placeholder = edit.value;
       toDos.forEach((toDo, index) => {
         if (indexy === index) {
           toDo.description = edit.value;
@@ -69,7 +59,38 @@ const removeToDo = () => {
   });
 };
 
+const addToDo = () => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const toDo = {
+      description: desc.value,
+      completed: false,
+      index: toDos.length,
+    };
+    toDos.push(toDo);
+    localStorage.setItem('toDos', JSON.stringify(toDos));
+    displayToDo(toDos);
+    editToDo();
+    removeToDo();
+    form.reset();
+  });
+  return toDos;
+};
+
+const clear = () => {
+  const clear = document.querySelector('.clear-completed');
+  clear.addEventListener('click', () => {
+    toDos = toDos.filter((toDo) => toDo.completed !== true);
+    localStorage.setItem('toDos', JSON.stringify(toDos));
+    displayToDo(toDos);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', checkStatus);
+
 addToDo();
 displayToDo(toDos);
-removeToDo();
 editToDo();
+removeToDo();
+statusUpdate();
+clear();

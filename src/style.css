@@ -133,3 +133,7 @@ i {
 .trash {
   cursor: pointer;
 }
+
+.strike {
+  text-decoration: line-through;
+}
