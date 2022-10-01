@@ -14,11 +14,7 @@ body {
   height: 100vh;
   width: 100vw;
   padding: 1em;
-  background:
-    radial-gradient (circle,
-    rgba(250, 248, 248, 0.671),
-    rgba(111, 218, 24, 0.082)
-  );
+  background: rgb(247, 246, 246);
 }
 
 h1 {
@@ -31,7 +27,7 @@ h1 {
 }
 
 .border-bottom {
-  border-bottom: 1px solid #58ac1459;
+  border-bottom: 1px solid #a5a5a559;
 }
 
 i {
