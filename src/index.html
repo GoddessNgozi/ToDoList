@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
-</head>
-<body>
-    <main>
-        <section class="boxy">
-            <header>
-                <p class="heading">Today's To Do</p>
-                <i class="fa-solid fa-arrows-rotate"></i>
-            </header>
-            <form action="" class="toDoForm">
-                <div class="desc">
-                    <input type="text" placeholder="Add to your list..." class="description">
-                    <i class="fa fa-arrow-turn-up"></i>
-                </div>
-            </form>
-            <ul class="list"></ul>
-            <div class="clear">
-                <button type="button" class="clear-completed">Clear all completed</button>
-            </div>
-        </section>
-    </main>    
-    <script src="main.js"></script>
-</body>
+    <title>Todo-List</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header border-bottom flex">
+        <h1>Today's to do</h1>
+        <i class="bx bx-refresh"></i>
+      </div>
+      <form class="flex border-bottom">
+        <input
+          class="input enter-text"
+          type="text"
+          name="todo"
+          placeholder="Add a todo...."
+        />
+        <i class="bx bx-subdirectory-left"></i>
+      </form>
+      <div class="todo-container"></div>
+      <div class="clear-todos">
+        <button type="button">Clear All Completed</button>
+      </div>
+    </div>
+    <div id="clear-completed">
+      <div class="clear-completed flex">
+        <i class="bx bx-trash"></i>
+        <h3>All completed todos are removed</h3>
+      </div>
+    </div>
+  </body>
 </html>
