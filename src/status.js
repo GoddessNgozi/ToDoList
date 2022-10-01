@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export const checkStatus = () => {
   const toDos = JSON.parse(localStorage.getItem('toDos')) || [];
   toDos.forEach((toDo, index) => {
@@ -12,4 +11,7 @@ export const checkStatus = () => {
       });
     }
   });
+};
+
+export const resetForm = () => {
 };
