@@ -9,14 +9,13 @@ class Todo {
   }
 }
 
-window.onload = ToDoList.displayTodos();
-document.addEventListener('DOMContentLoaded', ToDoList.checkStatus);
+document.addEventListener('DOMContentLoaded', ToDoList.checkStatus, ToDoList.displayTodos());
 
 const form = document.querySelector('.toDoForm');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const description = document.querySelector('.description').value;
-  const todo = new Todo(description, false, ToDoList.getTodos().length);
+  const description = document.querySelector('.description');
+  const todo = new Todo(description.value, false, ToDoList.getTodos().length);
   ToDoList.addTodo(todo);
   ToDoList.displayTodo(todo);
   form.reset();
