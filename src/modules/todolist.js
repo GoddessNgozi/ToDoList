@@ -95,7 +95,7 @@ export default class ToDoList {
     };
 
     static displayTodos = () => {
-      const todos = ToDoList.getTodos();
+      const todos = JSON.parse(localStorage.getItem('todos')) || [];
       todos.forEach((todo) => ToDoList.displayTodo(todo));
     }
 
