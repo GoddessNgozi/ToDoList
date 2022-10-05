@@ -37,3 +37,4 @@ clear.addEventListener('click', () => {
   localStorage.setItem('todos', JSON.stringify(todos));
   ToDoList.emptyList();
 });
+

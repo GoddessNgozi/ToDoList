@@ -1,6 +1,17 @@
 /** @jest-environment jsdom */
-import ToDoList from './src/modules/todolist.js';
-
+import ToDoList from './src/modules/todolist';
+const todos = [
+  {
+    description: 'name',
+    index:'0',
+    completed:true
+  },
+  {
+    description: 'name2',
+    index:'0',
+    completed:true
+  }
+]
 class Todo {
   constructor(description, completed, index) {
     this.description = description;
@@ -19,11 +30,13 @@ describe('add and remove', () => {
   });
 
   test('removing', ()=>{
-    document.body.innerHTML = '<ul class="list"><li><input type="checkbox" id="true"/> <input type="test" id="0" value="book1"/> <i id="0" class="fa fa-ellipsis-vertical"></i><i class="fa fa-trash-can" id="0"></i></li><li><input type="checkbox" id="true"/> <input type="test" id="1" value="book2"/> <i id="1" class="fa fa-ellipsis-vertical"></i><i class="fa fa-trash-can" class="trash" id="1"></i></li></ul>';
-    const trashcan= document.querySelector('.trash');
+    document.body.innerHTML = '<ul class="list"><li class="removed"><input type="checkbox" id="true"/> <input type="test" id="input0" value="book1"/> <i id="vertical0" class="fa fa-ellipsis-vertical"></i><i id="0" class="trash" class="fa fa-trash-can"></i></li><li><input type="checkbox" id="true"/> <input type="test" id="input1" value="book1"/> <i id="vertical1" class="fa fa-ellipsis-vertical"></i><i id="1" class="trash" class="fa fa-trash-can"></i></li></ul>';
+  
+    const trashcan= document.getElementById('0');
     ToDoList.deleteTodo(trashcan);
-    const numberli = document.querySelectorAll('.list li');
-    expect(numberli).toHaveLength(1);
+    
+    const ddg = document.querySelector('.removed');
+    expect(ddg).toBeNull();
   });
 
 });
