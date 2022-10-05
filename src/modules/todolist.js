@@ -32,14 +32,7 @@ export default class ToDoList {
       list.appendChild(li);
 
       trashcan.addEventListener('mousedown', () => {
-        trashcan.parentElement.remove();
-        let todos = JSON.parse(localStorage.getItem('todos')) || [];
-        todos = todos.filter((todo) => todo.index !== +trashcan.id);
-        todos.forEach((todo, index) => {
-          todo.index = index;
-        });
-        localStorage.setItem('todos', JSON.stringify(todos));
-        ToDoList.emptyList();
+        ToDoList.deleteTodo(trashcan);
       });
 
       const edits = document.querySelectorAll('.list-input');
@@ -119,4 +112,14 @@ export default class ToDoList {
         }
       });
     }
+
+    static deleteTodo = (trashcan) => {
+      let todos = ToDoList.getTodos();
+      todos = todos.filter((todo) => todo.index !== +trashcan.id);
+      todos.forEach((todo, index) => {
+        todo.index = index;
+      });
+      localStorage.setItem('todos', JSON.stringify(todos));
+      ToDoList.emptyList();
+    };
 }
