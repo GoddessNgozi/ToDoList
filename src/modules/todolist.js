@@ -116,6 +116,7 @@ export default class ToDoList {
     }
 
     static deleteTodo = (trashcan) => {
+      console.log(trashcan);
       // const trashcan = document.querySelector('.trash');
       let todos = JSON.parse(localStorage.getItem('todos')) || [];
       todos = todos.filter((todo) => todo.index !== +trashcan.id);
