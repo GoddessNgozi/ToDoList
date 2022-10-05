@@ -34,7 +34,6 @@ export default class ToDoList {
       trashcan.addEventListener('mousedown', () => {
         trashcan.parentElement.remove();
         ToDoList.deleteTodo(trashcan);
-        ToDoList.emptyList();
       });
 
       const edits = document.querySelectorAll('.list-input');
@@ -116,13 +115,12 @@ export default class ToDoList {
     }
 
     static deleteTodo = (trashcan) => {
-      console.log(trashcan);
-      // const trashcan = document.querySelector('.trash');
       let todos = JSON.parse(localStorage.getItem('todos')) || [];
       todos = todos.filter((todo) => todo.index !== +trashcan.id);
       todos.forEach((todo, index) => {
         todo.index = index;
       });
       localStorage.setItem('todos', JSON.stringify(todos));
+      ToDoList.emptyList();
     };
 }
