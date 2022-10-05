@@ -33,12 +33,7 @@ export default class ToDoList {
 
       trashcan.addEventListener('mousedown', () => {
         trashcan.parentElement.remove();
-        let todos = JSON.parse(localStorage.getItem('todos')) || [];
-        todos = todos.filter((todo) => todo.index !== +trashcan.id);
-        todos.forEach((todo, index) => {
-          todo.index = index;
-        });
-        localStorage.setItem('todos', JSON.stringify(todos));
+        ToDoList.deleteTodo(trashcan);
         ToDoList.emptyList();
       });
 
@@ -119,4 +114,14 @@ export default class ToDoList {
         }
       });
     }
+
+    static deleteTodo = (trashcan) => {
+      // const trashcan = document.querySelector('.trash');
+      let todos = JSON.parse(localStorage.getItem('todos')) || [];
+      todos = todos.filter((todo) => todo.index !== +trashcan.id);
+      todos.forEach((todo, index) => {
+        todo.index = index;
+      });
+      localStorage.setItem('todos', JSON.stringify(todos));
+    };
 }
