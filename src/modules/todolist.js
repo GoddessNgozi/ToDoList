@@ -32,7 +32,6 @@ export default class ToDoList {
       list.appendChild(li);
 
       trashcan.addEventListener('mousedown', () => {
-        trashcan.parentElement.remove();
         ToDoList.deleteTodo(trashcan);
       });
 
