@@ -114,7 +114,6 @@ export default class ToDoList {
     }
 
     static deleteTodo = (trashcan) => {
-      // let todos = JSON.parse(localStorage.getItem('todos')) || [] ;
       let todos = ToDoList.getTodos();
       todos = todos.filter((todo) => todo.index !== +trashcan.id);
       todos.forEach((todo, index) => {
