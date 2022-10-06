@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.31% </span>
+                <span class="strong">64.07% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>58/103</span>
+                <span class='fraction'>66/103</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.92% </span>
+                <span class="strong">42.3% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/26</span>
+                <span class='fraction'>11/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">39.28% </span>
+                <span class="strong">46.42% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>11/28</span>
+                <span class='fraction'>13/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58% </span>
+                <span class="strong">66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>58/100</span>
+                <span class='fraction'>66/100</span>
             </div>
         
             
@@ -214,14 +214,14 @@
 <a name='L149'></a><a href='#L149'>149</a>
 <a name='L150'></a><a href='#L150'>150</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -235,14 +235,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -383,18 +383,18 @@
     });
   };
 &nbsp;
-  static updateStatus = <span class="fstat-no" title="function not covered" >(c</span>heck, indexy) =&gt; {
-<span class="cstat-no" title="statement not covered" >    if (check.checked === true) {</span>
-<span class="cstat-no" title="statement not covered" >      check.nextSibling.classList.add('strike');</span>
-<span class="cstat-no" title="statement not covered" >      check.id = 'true';</span>
-      const todos = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('todos')) || [];</span>
-<span class="cstat-no" title="statement not covered" >      todos.forEach(<span class="fstat-no" title="function not covered" >(t</span>odo, index) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if (indexy === index) {</span>
-<span class="cstat-no" title="statement not covered" >          todo.completed = true;</span>
-<span class="cstat-no" title="statement not covered" >          localStorage.setItem('todos', JSON.stringify(todos));</span>
+  static updateStatus = (check, indexy) =&gt; {
+    if (check.checked === true) {
+      check.nextSibling.classList.add('strike');
+      check.id = 'true';
+      const todos = JSON.parse(localStorage.getItem('todos')) || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+      todos.forEach((todo, index) =&gt; {
+        if (indexy === index) {
+          todo.completed = true;
+          localStorage.setItem('todos', JSON.stringify(todos));
         }
       });
-    } else {
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >      check.nextSibling.classList.remove('strike');</span>
 <span class="cstat-no" title="statement not covered" >      check.id = 'false';</span>
       const todos = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('todos')) || [];</span>
@@ -517,7 +517,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-06T14:32:49.921Z
+                at 2022-10-06T14:49:08.727Z
             </div>
         <script src="prettify.js"></script>
         <script>

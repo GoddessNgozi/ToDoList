@@ -55,3 +55,31 @@ describe('Editing the task description', () => {
     expect(ToDoList.getTodos()[1].description).toEqual('changed');
   });
 });
+
+describe('Updating status to completed', () => {
+  test('Change status to completed', () => {
+    document.body.innerHTML = '<ul class="list">'
+    + '  <li class="doList"><input id="checkr" class="checker" type="checkbox" id="true" checked><input class="list-input" type="text" value="Testing"><i id="0" class="trash fa-solid fa-trash-can"></i></li>'
+    + '  <li class="doList"><input class="checker" type="checkbox" id="false"><input class="list-input" type="text" value="changed" id="editor"><i id="1" class="trash fa-solid fa-trash-can"></i></li>'
+    + '</ul>';
+    const obj = [
+      {
+        description: 'Testing',
+        completed: false,
+        index: 0,
+      },
+      {
+        description: 'Testing',
+        completed: false,
+        index: 1,
+      },
+    ];
+    obj.forEach((item) => {
+      const todo = new Todo(item.description, item.completed, item.index);
+      ToDoList.addTodo(todo);
+    });
+    const check = document.getElementById('checkr');
+    ToDoList.updateStatus(check, 0);
+    expect(ToDoList.getTodos()[0].completed).toEqual(true);
+  });
+});
