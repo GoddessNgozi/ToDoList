@@ -27,3 +27,31 @@ describe('add and remove', () => {
     expect(ddg).toBeNull();
   });
 });
+
+describe('Editing the task description', () => {
+  test('Change task description', () => {
+    document.body.innerHTML = '<ul class="list">'
+    + '  <li class="doList"><input class="checker" type="checkbox" id="false"><input class="list-input" type="text" value="Testing"><i id="0" class="trash fa-solid fa-trash-can"></i></li>'
+    + '  <li class="doList"><input class="checker" type="checkbox" id="false"><input class="list-input" type="text" value="changed" id="editor"><i id="1" class="trash fa-solid fa-trash-can"></i></li>'
+    + '</ul>';
+    const obj = [
+      {
+        description: 'Testing',
+        completed: false,
+        index: 0,
+      },
+      {
+        description: 'Testing',
+        completed: false,
+        index: 1,
+      },
+    ];
+    obj.forEach((item) => {
+      const todo = new Todo(item.description, item.completed, item.index);
+      ToDoList.addTodo(todo);
+    });
+    const edit = document.getElementById('editor');
+    ToDoList.editDesc(1, edit);
+    expect(ToDoList.getTodos()[1].description).toEqual('changed');
+  });
+});
