@@ -8,6 +8,32 @@ class Todo {
     this.index = index;
   }
 }
+
+describe('Clear completed', () => {
+  test('Clear completed', () => {
+    document.body.innerHTML = '<ul class="list"></ul>';
+    const obj = [
+      {
+        description: 'Testing',
+        completed: true,
+        index: 0,
+      },
+      {
+        description: 'Testing',
+        completed: false,
+        index: 1,
+      },
+    ];
+    obj.forEach((item) => {
+      const todo = new Todo(item.description, item.completed, item.index);
+      ToDoList.addTodo(todo);
+      ToDoList.displayTodo(todo);
+    });
+    ToDoList.clearCompleted();
+    expect(ToDoList.getTodos().length).toEqual(1);
+  });
+});
+
 describe('add and remove', () => {
   test('Adding', () => {
     document.body.innerHTML = '<ul class="list"></ul>';
