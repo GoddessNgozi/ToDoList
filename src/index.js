@@ -23,17 +23,5 @@ form.addEventListener('submit', (e) => {
 
 const clear = document.querySelector('.clear-completed');
 clear.addEventListener('click', () => {
-  const checkers = document.querySelectorAll('.checker');
-  checkers.forEach((check) => {
-    if (check.id === 'true') {
-      check.parentElement.remove();
-    }
-  });
-  let todos = ToDoList.getTodos();
-  todos = todos.filter((todo) => todo.completed !== true);
-  todos.forEach((todo, index) => {
-    todo.index = index;
-  });
-  localStorage.setItem('todos', JSON.stringify(todos));
-  ToDoList.emptyList();
+  ToDoList.clearCompleted();
 });
