@@ -3,6 +3,9 @@
 # ToDoList
 
 > "Simple App to add and remove tasks from a todolist".
+## Test functions
+> "we tested the functionality of our pure functions using jest"
+> "Add, remove, updating, and delete all testing were added.
 
 ## Built With
 
