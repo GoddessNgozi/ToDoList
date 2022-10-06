@@ -28,6 +28,12 @@
 - Twitter: [@goddessngozi](https://twitter.com/GoddessNgozi)
 - LinkedIn: [@NgoziNwocha](https://www.linkedin.com/in/NgoziNwocha)
 
+👤 **Vitalis Mutwiri**
+
+- GitHub: [@svitalis123](https://github.com/svitalis123)
+- Twitter: [@WilsonVitalis](https://twitter.com/WilsonVitalis)
+- LinkedIn: [@vitalismutwiri](https://www.linkedin.com/in/vitalismutwiri/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
